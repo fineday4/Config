@@ -1,12 +1,12 @@
-const userTable = require("../models/TableOpt");
+const userTable = require("../repositories/table_Opt");
 var sqlite3 = require('sqlite3').verbose();
-const OS = require('os');
+const os = require('os');
  
 let currentId = 0;
  
 class userTableOpt {
   constructor() {
-    const userTable1 = new userTable(++currentId, OS.homedir() + '/.lxdb/', "lxconfig.db");
+    const userTable1 = new userTable(++currentId, os.homedir() + '/.lxdb/', "lxconfig.db");
     userTable1.isFinished = true;
     this.userTableHandle = userTable1;
   }

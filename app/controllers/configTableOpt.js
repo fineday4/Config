@@ -1,5 +1,5 @@
 const OS = require('os');
-const ConfigTable = require("../models/TableOpt");
+const ConfigTable = require("../repositories/table_Opt");
  
 let currentId = 0;
  
