@@ -1,0 +1,75 @@
+{
+    "common": {"aaa": false},
+
+    "serial_module":[
+        {
+            "instance":"lx_base", 
+                "port": "ttyS1" ,  "loop_rate": 50,
+                "wheel_diameter": 0.2, "wheel_distance": 0.547, "encoder_resolution": 1000, "gear_reduction": 32,
+                "is_fr1511_base": true,
+                "_BASE_TYPE": "FR1511A",
+                "_comment": "same as fr1511a, gear_reduction: 20"
+        },
+        {
+            "instance":"liao_batt", 
+                "port": "ttyS2" , "alarm_thres_percent": 10
+        }
+    ],
+
+    "pcl_module":[
+        {
+            "instance":"cloud_agg"
+        }
+    ],
+    
+    "pritask_module":[ 
+        {"common": {
+            "charge_blindmove_dist": -1.0, "roller_blindmove_dist": 1.5, "roller_blindmove_dist_short": 1.0
+            } },
+        {
+            "instance":"nav_task",
+                "enable_square_rot": false, "use_seamless_align": false
+        },
+        {
+            "instance":"charge_task"
+        },
+        {
+            "instance":"elev_task"
+        },
+        {
+            "instance":"tmp_task"
+        },
+        {
+            "instance":"other_task", "map_name":"outmzpick"
+        }
+    ],
+
+    "subtask_module":[
+        {"common": {
+            "小车尺寸":"车宽，车中心到前方距离，车中心到后方距离，车原地旋转半径(差速车)",
+            "robot_width": 0.692, "robot_front_dist": 0.426, "robot_back_dist": 0.426,"robot_rotate_r":0.45
+            } },
+        {
+            "instance":"localplan_task", 
+                "debug": false , "enable_oa": true, "enable_safety_controller": true, 
+                "use_no_head": false,
+                "max_vel_x": 1.5, "max_vel_th": 50, "acc_lim_x": 0.5, "acc_lim_th": 57,
+                "turn_vel": 0.4, "max_load_vel": 0.8,
+                "map_obs_enb": false,
+                "_dimensions: ": "------------------",
+                "bot_width": 0.692, "bot_front_dist": 0.446, "bot_back_dist": 0.446,
+                "cargo_dim_list": [[0.172, 0.874, 1.324, 1.902, 1.0, 1.0] ]
+        },
+        {
+            "instance":"misc_task"
+        },
+        {
+            "instance":"vlasercharge_task", 
+                "debug": false , "dist_thres": 0.25
+        },
+        {
+            "instance":"elev_align_task",
+                "side_long": 0.85, "side_short":0.85, "stop_dis": 0.12
+        }
+    ]
+}
