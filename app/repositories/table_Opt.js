@@ -25,13 +25,15 @@ class TableOpt {
 
     modifyOne(updateSql, res){
       let modisql = this.sqliteDB.prepare(updateSql);
-      modisql.run(function(err){
-        if(err){
-          res.send({'success' : 'false'});
-        }else{
-          res.send({'success' : 'true'});
-        }
-      });
+      this.sqliteDB.serialize(function(){
+        modisql.run(function(err){
+          if(err){
+            res.send({'success' : 'false'});
+          }else{
+            res.send({'success' : 'true'});
+          }
+        });
+      })
     }
 
     modifyAll(){
@@ -40,12 +42,14 @@ class TableOpt {
 
     addOne(createsql, res){
       let sql_add = this.sqliteDB.prepare(createsql);
-      sql_add.run(function(err){
-        if(err){
-          res.send({'success' : 'false'});
-        }else{
-          res.send({'success' : 'true'});
-        }
+      this.sqliteDB.serialize(function(){
+        sql_add.run(function(err){
+          if(err){
+            res.send({'success' : 'false'});
+          }else{
+            res.send({'success' : 'true'});
+          }
+        });
       });
     }
 
